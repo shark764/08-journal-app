@@ -1,0 +1,9 @@
+.link {
+  text-decoration: none;
+  color: $accent-color;
+
+  &:hover {
+    text-decoration: underline;
+    color: darken($color: $accent-color, $amount: 15);
+  }
+}

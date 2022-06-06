@@ -7,6 +7,16 @@
   resolved "https://registry.yarnpkg.com/@2600hz/commio-native-utilities/-/commio-native-utilities-0.5.2.tgz#c317d80ec5c9cfcaa12ee7eff8d38f42128e7e71"
   integrity sha512-eVZVIFuMggt2kHd6ty6IgW5u0pz9WPwtjLJdi2fbRZBqywzm+VWMA5nYDK8lYnjiJ9jTPd9ELjgDtR96fJeSaQ==
 
+"@2600hz/sds-core@^1.1.0":
+  version "1.1.0"
+  resolved "https://registry.yarnpkg.com/@2600hz/sds-core/-/sds-core-1.1.0.tgz#cc5ab8527ffa9a6543f4887c41f3ea6e798f8536"
+  integrity sha512-nF1IY9WKitoJ95viyj9qG3K1kxMq/t8WVquPfoQvnqgzuEZOHPjDWK3c89ECFBZLxOjocV079N6pFTy3nJfwww==
+
+"@2600hz/sds-themes@^2.0.1":
+  version "2.0.1"
+  resolved "https://registry.yarnpkg.com/@2600hz/sds-themes/-/sds-themes-2.0.1.tgz#5d8b8bf49890b6f55fa8d5199d77205ca7383100"
+  integrity sha512-b+pQkyVeptAjpODt/ELxzfDG1itJCx/MpVJPYY9Fg8ZCVMiwBhEIMoZLQ9y7iN9Y7zEZaFrGEPrc3FbrrpwbEA==
+
 "@ampproject/remapping@^2.1.0":
   version "2.2.0"
   resolved "https://registry.yarnpkg.com/@ampproject/remapping/-/remapping-2.2.0.tgz#56c133824780de3174aed5ab6834f3026790154d"
@@ -2713,11 +2723,6 @@ ajv@^8.0.0, ajv@^8.6.0, ajv@^8.8.0:
     require-from-string "^2.0.2"
     uri-js "^4.2.2"
 
-animate.css@^4.1.1:
-  version "4.1.1"
-  resolved "https://registry.yarnpkg.com/animate.css/-/animate.css-4.1.1.tgz#614ec5a81131d7e4dc362a58143f7406abd68075"
-  integrity sha512-+mRmCTv6SbCmtYJCN4faJMNFVNN5EuCTTprDTAo7YzIGji2KADmakjVA3+8mVDkZ2Bf09vayB35lSQIex2+QaQ==
-
 ansi-escapes@^4.2.1, ansi-escapes@^4.3.0, ansi-escapes@^4.3.1:
   version "4.3.2"
   resolved "https://registry.yarnpkg.com/ansi-escapes/-/ansi-escapes-4.3.2.tgz#6b2291d1db7d98b6521d5f1efa42d0f3a9feb65e"
@@ -3141,16 +3146,6 @@ boolbase@^1.0.0, boolbase@~1.0.0:
   version "1.0.0"
   resolved "https://registry.yarnpkg.com/boolbase/-/boolbase-1.0.0.tgz#68dff5fbe60c51eb37725ea9e3ed310dcc1e776e"
   integrity sha512-JZOSA7Mo9sNGB8+UjSgzdLtokWAky1zbztM3WRLCbZ70/3cTANmQmOdR7y2g+J0e2WXywy1yS468tY+IruqEww==
-
-bootstrap-icons@^1.8.3:
-  version "1.8.3"
-  resolved "https://registry.yarnpkg.com/bootstrap-icons/-/bootstrap-icons-1.8.3.tgz#14c15e26deaddd42af9f88c4d81f7c45bf26aa98"
-  integrity sha512-s5kmttnbq4BXbx3Bwnj39y+t7Vc3blTtyD77W3aYQ1LlNoS3lNbbGvSYhIbg26Im8KmjScyFpHEevlPOBcIDdA==
-
-bootstrap@5.2.0-beta1:
-  version "5.2.0-beta1"
-  resolved "https://registry.yarnpkg.com/bootstrap/-/bootstrap-5.2.0-beta1.tgz#75647ff7327c2cac9b8e1cb6728a790a5be4cefc"
-  integrity sha512-6qbgs177WZEFY4SLQUq3tEHayYG80nfDmyTpdKi0MJqRMdS+HAoq24+YKfx6wf+nHY0rx8zrh477J1lFu4WzOA==
 
 brace-expansion@^1.1.7:
   version "1.1.11"

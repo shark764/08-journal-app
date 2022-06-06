@@ -1,0 +1,62 @@
+.auth__main {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: $primary-color;
+  margin: 0px;
+  height: 100vh;
+  width: 100vw;
+}
+
+.auth__box-container {
+  background-color: $alt-body;
+  box-shadow: 0px 3px $divider-color;
+  border-radius: 4px;
+  padding: 20px;
+  width: 250px;
+}
+
+.auth__title {
+  color: $primary-color-dark;
+  // TODO:
+  // We can also use sass function "darken"
+  // color: darken($color: $primary-color, $amount: 20);
+
+  // Use mb-5
+  // margin-bottom: 20px;
+}
+
+.auth__input {
+  color: $primary-text-color;
+  border: 0px;
+  border-bottom: 1px solid $divider-color;
+  font-size: 16px;
+  margin-bottom: 10px;
+  height: 20px;
+  width: 100%;
+
+  transition: border-bottom 0.3s ease;
+
+  &:focus {
+    outline: none;
+    border-bottom: 1px solid $primary-color;
+  }
+}
+
+.auth__social-networks {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  width: 100%;
+}
+
+.auth__alert-error {
+  background-color: $primary-color-light;
+  border-radius: 5px;
+  color: $primary-color-text;
+  display: flex;
+  justify-content: center;
+  margin-bottom: 10px;
+  padding: 5px;
+}
