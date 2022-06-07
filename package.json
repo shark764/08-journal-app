@@ -5,11 +5,14 @@
   "dependencies": {
     "@2600hz/sds-core": "^1.1.0",
     "@2600hz/sds-themes": "^2.0.1",
+    "firebase": "8.10.0",
     "query-string": "^7.1.1",
     "react": "^18.1.0",
     "react-dom": "^18.1.0",
+    "react-redux": "^8.0.2",
     "react-router-dom": "^6.3.0",
     "react-scripts": "5.0.1",
+    "redux": "^4.2.0",
     "sass": "^1.52.1",
     "typescript": "^4.4.2",
     "web-vitals": "^2.1.0"
@@ -75,6 +78,7 @@
     "eslint-plugin-react-hooks": "^4.4.0",
     "husky": "^7.0.4",
     "lint-staged": "^12.3.7",
-    "prettier": "^2.6.1"
+    "prettier": "^2.6.1",
+    "redux-devtools-extension": "^2.13.9"
   }
 }
