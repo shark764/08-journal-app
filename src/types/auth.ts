@@ -1,3 +1,6 @@
+import type { AnyAction } from 'redux';
+import type { ThunkDispatch } from 'redux-thunk';
+
 export interface AuthUser {
   uid: string;
   name: string;
@@ -14,6 +17,8 @@ export interface AuthAction {
 }
 
 export type AuthDispatch = (args: AuthAction) => AuthAction;
+
+export type AuthThunkDispatch = ThunkDispatch<AuthState, unknown, AnyAction>;
 
 export interface LoginFormValues {
   email: string;

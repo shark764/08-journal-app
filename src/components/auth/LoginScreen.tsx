@@ -1,24 +1,29 @@
 import type { FormEvent } from 'react';
 import { useDispatch } from 'react-redux';
 import { Link } from 'react-router-dom';
-import { login } from '@/actions/auth';
+import {
+  startLoginWithEmailAndPassword,
+  startLoginWithGoogle,
+} from '@/actions/auth';
 import useForm from '@/hooks/useForm';
-import type { LoginFormValues } from '@/types/auth';
-import { faker } from '@faker-js/faker';
+import type { AuthThunkDispatch, LoginFormValues } from '@/types/auth';
 
 const LoginScreen = () => {
-  const dispatch = useDispatch();
+  const dispatch: AuthThunkDispatch = useDispatch();
   const [formValues, handleInputChange] = useForm<LoginFormValues>({
-    email: 'daniel@gmail.com',
-    password: 'abc123xyz789',
+    email: '',
+    password: '',
   });
   const { email, password } = formValues;
 
   const handleSubmit = (evt: FormEvent<HTMLFormElement>) => {
     evt.preventDefault();
-    console.log(email, password);
 
-    dispatch(login(faker.datatype.uuid(), faker.name.findName()));
+    dispatch(startLoginWithEmailAndPassword(email, password));
+  };
+
+  const handleLoginWithGoogle = () => {
+    dispatch(startLoginWithGoogle());
   };
 
   return (
@@ -50,7 +55,10 @@ const LoginScreen = () => {
         <div className="auth__social-networks pt-5 pb-5">
           <p>Login with social networks</p>
 
-          <div className="google-btn">
+          <div
+            role="presentation"
+            className="google-btn"
+            onClick={handleLoginWithGoogle}>
             <div className="google-icon-wrapper">
               <img
                 className="google-icon"
