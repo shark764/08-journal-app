@@ -44,6 +44,7 @@ const LoginScreen = () => {
           name="password"
           placeholder="password"
           className="auth__input"
+          autoComplete="new-password"
           value={password}
           onChange={handleInputChange}
         />

@@ -1,4 +1,8 @@
 export const actionTypes = {
-  login: '[auth] login',
-  logout: '[auth] logout',
+  login: '[Auth] Login',
+  logout: '[Auth] Logout',
+
+  uiSetLoading: '[UI] Set Loading',
+  uiSetError: '[UI] Set Error',
+  uiRemoveError: '[UI] Remove Error',
 };
