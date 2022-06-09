@@ -1,23 +1,26 @@
 /**
  * state {
  *    uid: 'abcd12349876vxyz',
- *    name: 'Daniel Hernandez'
+ *    name: 'Daniel Hernandez',
+ *    photoURL: 'https://example.com/jane-q-user/profile.jpg'
  * }
  */
 
 import { actionTypes } from '@/shared/actionTypes';
-import type { AuthAction, AuthState, AuthUser } from '@/types/auth';
+import type { ActionReducer } from '@/types';
+import type { AuthState, AuthUser } from '@/types/auth';
 
 const initialState: AuthState = {};
 
-// eslint-disable-next-line default-param-last
-const authReducer = (state = initialState, action: AuthAction): AuthState => {
+const authReducer = (
+  // eslint-disable-next-line default-param-last
+  state = initialState,
+  action: ActionReducer
+): AuthState => {
   switch (action.type) {
     case actionTypes.login: {
-      const { uid, name } = action.payload as AuthUser;
       return {
-        uid,
-        name,
+        ...(action.payload as AuthUser),
       };
     }
 

@@ -1,5 +1,6 @@
 import { actionTypes } from '@/shared/actionTypes';
-import type { UIAction, UIState } from '@/types/ui';
+import type { ActionReducer } from '@/types';
+import type { UIState } from '@/types/ui';
 
 const initialState: UIState = {
   loading: false,
@@ -7,7 +8,7 @@ const initialState: UIState = {
 };
 
 // eslint-disable-next-line default-param-last
-const uiReducer = (state = initialState, action: UIAction): UIState => {
+const uiReducer = (state = initialState, action: ActionReducer): UIState => {
   switch (action.type) {
     case actionTypes.uiSetLoading: {
       const { loading } = action.payload as { loading: boolean; };
@@ -16,21 +17,31 @@ const uiReducer = (state = initialState, action: UIAction): UIState => {
         loading,
       };
     }
+    case actionTypes.uiStartLoading:
+      return {
+        ...state,
+        loading: true,
+      };
+    case actionTypes.uiStopLoading:
+      return {
+        ...state,
+        loading: false,
+      };
 
     case actionTypes.uiSetError: {
-      const { errorMessage } = action.payload as { errorMessage: string; };
+      const { errorMessage } = action.payload as {
+        errorMessage: string | null;
+      };
       return {
         ...state,
         errorMessage,
       };
     }
-
-    case actionTypes.uiRemoveError: {
+    case actionTypes.uiRemoveError:
       return {
         ...state,
         errorMessage: null,
       };
-    }
 
     default:
       return state;

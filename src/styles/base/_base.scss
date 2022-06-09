@@ -13,6 +13,16 @@ main {
   width: 100%;
 }
 
+.my {
+  &-1 {
+    margin-top: 5px;
+    margin-bottom: 5px;
+  }
+  &-5 {
+    margin-top: 20px;
+    margin-bottom: 20px;
+  }
+}
 .mt {
   &-1 {
     margin-top: 5px;
@@ -30,6 +40,16 @@ main {
   }
 }
 
+.py {
+  &-1 {
+    padding-top: 5px;
+    padding-bottom: 5px;
+  }
+  &-5 {
+    padding-top: 20px;
+    padding-bottom: 20px;
+  }
+}
 .pt {
   &-1 {
     padding-top: 5px;
@@ -44,6 +64,60 @@ main {
   }
   &-5 {
     padding-bottom: 20px;
+  }
+}
+
+.mx {
+  &-1 {
+    margin-left: 5px;
+    margin-right: 5px;
+  }
+  &-5 {
+    margin-left: 20px;
+    margin-right: 20px;
+  }
+}
+.ml {
+  &-1 {
+    margin-left: 5px;
+  }
+  &-5 {
+    margin-left: 20px;
+  }
+}
+.mr {
+  &-1 {
+    margin-right: 5px;
+  }
+  &-5 {
+    margin-right: 20px;
+  }
+}
+
+.px {
+  &-1 {
+    padding-left: 5px;
+    padding-right: 5px;
+  }
+  &-5 {
+    padding-left: 20px;
+    padding-right: 20px;
+  }
+}
+.pl {
+  &-1 {
+    padding-left: 5px;
+  }
+  &-5 {
+    padding-left: 20px;
+  }
+}
+.pr {
+  &-1 {
+    padding-right: 5px;
+  }
+  &-5 {
+    padding-right: 20px;
   }
 }
 

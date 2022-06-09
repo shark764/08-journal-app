@@ -21,8 +21,20 @@
   display: flex;
   justify-content: space-between;
 }
-.journal__sidebar-navbar h3 {
-  font-weight: lighter;
+.journal__sidebar-navbar .journal__sidebar-user {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 5px;
+
+  .journal__sidebar-displayName {
+    font-weight: 300;
+  }
+}
+
+.journal__sidebar-avatar.sb-avatar__text {
+  background-color: $primary-color !important;
+  color: $primary-color-text !important;
 }
 
 .journal__new-entry {

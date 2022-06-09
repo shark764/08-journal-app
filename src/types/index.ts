@@ -5,3 +5,10 @@ export interface AppState {
   auth: AuthState;
   ui: UIState;
 }
+
+export interface ActionReducer {
+  type: string;
+  payload?: any;
+}
+
+export type DispatchReducer = (args: ActionReducer) => ActionReducer;

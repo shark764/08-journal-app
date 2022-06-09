@@ -7,9 +7,11 @@ import { uiRemoveError, uiSetError } from '@/actions/ui';
 import useForm from '@/hooks/useForm';
 import type { AppState } from '@/types';
 import type { AuthThunkDispatch, RegisterFormValues } from '@/types/auth';
+import Loading from '../common/Loading';
 
 const RegisterScreen = () => {
   const errorMessage = useSelector((state: AppState) => state.ui.errorMessage);
+  const isLoading = useSelector((state: AppState) => state.ui.loading);
   const dispatch: AuthThunkDispatch = useDispatch();
   const [formValues, handleInputChange] = useForm<RegisterFormValues>({
     name: '',
@@ -71,6 +73,8 @@ const RegisterScreen = () => {
         <div className="auth__alert-error">{errorMessage}</div>
       )}
 
+      {isLoading && <Loading />}
+
       <form onSubmit={handleSubmit} autoComplete="off">
         <input
           type="text"
@@ -110,7 +114,10 @@ const RegisterScreen = () => {
           onChange={handleInputChange}
         />
 
-        <button type="submit" className="btn btn-primary btn-block mb-5">
+        <button
+          type="submit"
+          className="btn btn-primary btn-block mb-5"
+          disabled={isLoading}>
           Register
         </button>
 

@@ -1,14 +1,18 @@
 import type { FormEvent } from 'react';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
 import {
   startLoginWithEmailAndPassword,
   startLoginWithGoogle,
 } from '@/actions/auth';
 import useForm from '@/hooks/useForm';
+import type { AppState } from '@/types';
 import type { AuthThunkDispatch, LoginFormValues } from '@/types/auth';
+import Loading from '../common/Loading';
 
 const LoginScreen = () => {
+  const errorMessage = useSelector((state: AppState) => state.ui.errorMessage);
+  const isLoading = useSelector((state: AppState) => state.ui.loading);
   const dispatch: AuthThunkDispatch = useDispatch();
   const [formValues, handleInputChange] = useForm<LoginFormValues>({
     email: '',
@@ -29,6 +33,13 @@ const LoginScreen = () => {
   return (
     <>
       <h3 className="auth__title mb-5">Login</h3>
+
+      {Boolean(errorMessage) && (
+        <div className="auth__alert-error">{errorMessage}</div>
+      )}
+
+      {isLoading && <Loading />}
+
       <form onSubmit={handleSubmit} autoComplete="off">
         <input
           type="text"
@@ -49,7 +60,10 @@ const LoginScreen = () => {
           onChange={handleInputChange}
         />
 
-        <button type="submit" className="btn btn-primary btn-block">
+        <button
+          type="submit"
+          className="btn btn-primary btn-block"
+          disabled={isLoading}>
           Log In
         </button>
 

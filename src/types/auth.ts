@@ -4,19 +4,14 @@ import type { ThunkDispatch } from 'redux-thunk';
 export interface AuthUser {
   uid: string;
   name: string;
+  photoURL?: string | null;
 }
 
 export interface AuthState {
   uid?: string;
   name?: string;
+  photoURL?: string | null;
 }
-
-export interface AuthAction {
-  type: string;
-  payload: any;
-}
-
-export type AuthDispatch = (args: AuthAction) => AuthAction;
 
 export type AuthThunkDispatch = ThunkDispatch<AuthState, unknown, AnyAction>;
 
