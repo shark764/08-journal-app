@@ -9,6 +9,7 @@ import {
 } from 'firebase/auth';
 import type { AnyAction } from 'redux';
 import type { ThunkAction } from 'redux-thunk';
+import Swal from 'sweetalert2';
 import { googleAuthProvider } from '@/firebase/config';
 import { actionTypes } from '@/shared/actionTypes';
 import { log } from '@/shared/utils';
@@ -38,6 +39,7 @@ export const startLoginWithEmailAndPassword =
       } catch (error) {
         log('error', 'error', error);
         dispatch(uiSetError((error as Error)?.message));
+        void Swal.fire('Failed', (error as Error)?.message, 'error');
       } finally {
         dispatch(uiStopLoading());
       }
@@ -66,6 +68,7 @@ export const startLoginWithGoogle =
     } catch (error) {
       log('error', 'error', error);
       dispatch(uiSetError((error as Error)?.message));
+      void Swal.fire('Failed', (error as Error)?.message, 'error');
     } finally {
       dispatch(uiStopLoading());
     }
@@ -100,6 +103,7 @@ export const startRegisterWithEmailAndPassword =
       } catch (error) {
         log('error', 'error', error);
         dispatch(uiSetError((error as Error)?.message));
+        void Swal.fire('Failed', (error as Error)?.message, 'error');
       } finally {
         dispatch(uiStopLoading());
       }
