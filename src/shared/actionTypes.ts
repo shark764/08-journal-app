@@ -13,6 +13,7 @@ export const actionTypes = {
   notesUpdated: '[Notes] Update Note',
   notesFileUrl: '[Notes] Update Image',
   notesSetActive: '[Notes] Set Active Note',
+  notesClearActive: '[Notes] Clear Active Note',
   notesDeleted: '[Notes] Delete Note',
   notesCleanup: '[Notes] Cleanup Note',
 };

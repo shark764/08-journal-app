@@ -1,8 +1,7 @@
 import { useEffect, useRef } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { saveNote } from '@/actions/notes';
+import { discardNote, saveNote, startUpload } from '@/actions/notes';
 import useForm from '@/hooks/useForm';
-import { log } from '@/shared/utils';
 import type { AppState, AppThunkDispatch } from '@/types';
 import type { NoteFormValues } from '@/types/notes';
 import NotesAppBar from './NotesAppBar';
@@ -14,7 +13,8 @@ const NoteScreen = () => {
   const [formState, handleInputChange, resetForm] = useForm<NoteFormValues>({
     ...activeNote,
   });
-  const { title, body, imageUrl } = formState;
+  const { title, body } = formState;
+  const imageUrl = activeNote?.imageUrl;
 
   useEffect(() => {
     if (activeNote?.id !== activeId.current) {
@@ -25,8 +25,8 @@ const NoteScreen = () => {
     }
   }, [activeNote, resetForm]);
 
-  const handlePicture = () => {
-    log('info', 'picture');
+  const handlePicture = (file: File) => {
+    dispatch(startUpload(file));
   };
 
   const handleSave = () => {
@@ -35,9 +35,13 @@ const NoteScreen = () => {
         ...activeNote,
         title,
         body,
-        imageUrl: imageUrl ?? 'https://i.redd.it/3w8r1ji2kup21.jpg',
+        imageUrl,
       })
     );
+  };
+
+  const handleDiscard = () => {
+    dispatch(discardNote());
   };
 
   return (
@@ -45,6 +49,7 @@ const NoteScreen = () => {
       <NotesAppBar
         date={activeNote?.date as number}
         handleSave={handleSave}
+        handleDiscard={handleDiscard}
         handlePicture={handlePicture}
       />
 

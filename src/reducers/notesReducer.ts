@@ -51,6 +51,12 @@ const notesReducer = (
       };
     }
 
+    case actionTypes.notesClearActive:
+      return {
+        ...state,
+        active: null,
+      };
+
     case actionTypes.notesLoad: {
       const { notes } = action.payload as { notes: Array<Partial<Note>>; };
       return {

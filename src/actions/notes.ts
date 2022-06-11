@@ -1,6 +1,7 @@
-import { addDoc, collection, doc, setDoc } from 'firebase/firestore';
+import { addDoc, collection, deleteDoc, doc, setDoc } from 'firebase/firestore';
 import Swal from 'sweetalert2';
 import { db } from '@/firebase/config';
+import { fileUpload } from '@/helpers/fileUpload';
 import { loadNotes } from '@/helpers/loadNotes';
 import { actionTypes } from '@/shared/actionTypes';
 import type { ActionReducer, AppThunkAction } from '@/types';
@@ -39,6 +40,21 @@ export const setActiveNote = (note: Partial<Note>): ActionReducer => ({
   },
 });
 
+export const discardNote = (): AppThunkAction => async (dispatch, getState) => {
+  const { uid } = getState().auth;
+  const activeNote = getState().notes.active;
+  if (activeNote?.title?.trim() === '') {
+    await deleteDoc(
+      doc(db, `${uid as string}/journal/notes`, activeNote.id as string)
+    );
+  }
+  dispatch(clearActiveNote());
+};
+
+export const clearActiveNote = (): ActionReducer => ({
+  type: actionTypes.notesClearActive,
+});
+
 export const startLoadNotes =
   (): AppThunkAction => async (dispatch, getState) => {
     const { uid } = getState().auth;
@@ -55,7 +71,7 @@ export const setNotes = (notes: Array<Partial<Note>>): ActionReducer => ({
 
 export const saveNote =
   (note: Partial<Note>): AppThunkAction =>
-    async (_, getState) => {
+    async (dispatch, getState) => {
       const { uid } = getState().auth;
       const { id, ...restNote } = note;
       const noteToFirestore = {
@@ -69,6 +85,7 @@ export const saveNote =
       );
 
       void Swal.fire('Saved', note.title, 'success');
+      dispatch(clearActiveNote());
 
     // Not necessary to dispatch this, since snapshot subscriber
     // takes care of refreshing data
@@ -81,6 +98,31 @@ export const updateNote = (note: Partial<Note>): ActionReducer => ({
     note,
   },
 });
+
+export const startUpload =
+  (file: File): AppThunkAction =>
+    async (dispatch, getState) => {
+      const activeNote = getState().notes.active;
+
+      void Swal.fire({
+        title: 'Uploading...',
+        text: 'Please wait...',
+        allowOutsideClick: false,
+        didOpen: () => {
+          Swal.showLoading();
+        },
+      });
+
+      const secureFileUrl = await fileUpload(file);
+      const updatedActiveNote: Partial<Note> = {
+        ...activeNote,
+        imageUrl: secureFileUrl,
+      };
+
+      Swal.close();
+
+      dispatch(setActiveNote(updatedActiveNote));
+    };
 
 // export const startNewNote2 =
 //   (note: Partial<Note>): AppThunkAction =>
