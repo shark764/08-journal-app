@@ -6,14 +6,14 @@ import {
   startLoginWithGoogle,
 } from '@/actions/auth';
 import useForm from '@/hooks/useForm';
-import type { AppState } from '@/types';
-import type { AuthThunkDispatch, LoginFormValues } from '@/types/auth';
+import type { AppState, AppThunkDispatch } from '@/types';
+import type { LoginFormValues } from '@/types/auth';
 import Loading from '../common/Loading';
 
 const LoginScreen = () => {
   const errorMessage = useSelector((state: AppState) => state.ui.errorMessage);
   const isLoading = useSelector((state: AppState) => state.ui.loading);
-  const dispatch: AuthThunkDispatch = useDispatch();
+  const dispatch: AppThunkDispatch = useDispatch();
   const [formValues, handleInputChange] = useForm<LoginFormValues>({
     email: '',
     password: '',

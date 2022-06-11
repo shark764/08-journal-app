@@ -48,6 +48,15 @@ config.rules = {
     'error',
     { namedComponents: 'arrow-function' },
   ],
+  '@typescript-eslint/naming-convention': [
+    'error',
+    {
+      selector: 'variableLike',
+      format: ['camelCase', 'PascalCase', 'UPPER_CASE'],
+      leadingUnderscore: 'allow',
+      trailingUnderscore: 'allow',
+    },
+  ],
 };
 
 module.exports = config;

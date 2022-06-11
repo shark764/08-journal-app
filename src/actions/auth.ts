@@ -7,21 +7,15 @@ import {
   signOut,
   updateProfile,
 } from 'firebase/auth';
-import type { AnyAction } from 'redux';
-import type { ThunkAction } from 'redux-thunk';
 import Swal from 'sweetalert2';
 import { googleAuthProvider } from '@/firebase/config';
 import { actionTypes } from '@/shared/actionTypes';
 import { log } from '@/shared/utils';
-import type { ActionReducer } from '@/types';
-import type { AuthState } from '@/types/auth';
+import type { ActionReducer, AppThunkAction } from '@/types';
 import { uiSetError, uiStartLoading, uiStopLoading } from './ui';
 
 export const startLoginWithEmailAndPassword =
-  (
-    email: string,
-    password: string
-  ): ThunkAction<void, AuthState, unknown, AnyAction> =>
+  (email: string, password: string): AppThunkAction =>
     async (dispatch) => {
       dispatch(uiStartLoading());
       try {
@@ -45,41 +39,36 @@ export const startLoginWithEmailAndPassword =
       }
     };
 
-export const startLoginWithGoogle =
-  (): ThunkAction<void, AuthState, unknown, AnyAction> => async (dispatch) => {
-    dispatch(uiStartLoading());
-    try {
-      const auth = getAuth();
-      const userCredential = await signInWithPopup(auth, googleAuthProvider);
-      // This gives you a Google Access Token. You can use it to access the Google API.
-      const credentialFromResult =
-        GoogleAuthProvider.credentialFromResult(userCredential);
-      const token = credentialFromResult?.accessToken;
-      // The signed-in user info.
-      const { user } = userCredential;
-      const { displayName, uid, photoURL } = user;
-      log('success', 'user logged with google - credential', {
-        token,
-        displayName,
-        uid,
-        photoURL,
-      });
-      dispatch(login(uid, displayName, photoURL));
-    } catch (error) {
-      log('error', 'error', error);
-      dispatch(uiSetError((error as Error)?.message));
-      void Swal.fire('Failed', (error as Error)?.message, 'error');
-    } finally {
-      dispatch(uiStopLoading());
-    }
-  };
+export const startLoginWithGoogle = (): AppThunkAction => async (dispatch) => {
+  dispatch(uiStartLoading());
+  try {
+    const auth = getAuth();
+    const userCredential = await signInWithPopup(auth, googleAuthProvider);
+    // This gives you a Google Access Token. You can use it to access the Google API.
+    const credentialFromResult =
+      GoogleAuthProvider.credentialFromResult(userCredential);
+    const token = credentialFromResult?.accessToken;
+    // The signed-in user info.
+    const { user } = userCredential;
+    const { displayName, uid, photoURL } = user;
+    log('success', 'user logged with google - credential', {
+      token,
+      displayName,
+      uid,
+      photoURL,
+    });
+    dispatch(login(uid, displayName, photoURL));
+  } catch (error) {
+    log('error', 'error', error);
+    dispatch(uiSetError((error as Error)?.message));
+    void Swal.fire('Failed', (error as Error)?.message, 'error');
+  } finally {
+    dispatch(uiStopLoading());
+  }
+};
 
 export const startRegisterWithEmailAndPassword =
-  (
-    email: string,
-    password: string,
-    name: string
-  ): ThunkAction<void, AuthState, unknown, AnyAction> =>
+  (email: string, password: string, name: string): AppThunkAction =>
     async (dispatch) => {
       dispatch(uiStartLoading());
       try {
@@ -118,18 +107,17 @@ export const login = (
   payload: { uid, name, photoURL },
 });
 
-export const startLogout =
-  (): ThunkAction<void, AuthState, unknown, AnyAction> => async (dispatch) => {
-    try {
-      const auth = getAuth();
-      await signOut(auth);
-      // Sign-out successful.
-      log('info', 'user logged out');
-      dispatch(logout());
-    } catch (error) {
-      log('error', 'error', error);
-    }
-  };
+export const startLogout = (): AppThunkAction => async (dispatch) => {
+  try {
+    const auth = getAuth();
+    await signOut(auth);
+    // Sign-out successful.
+    log('info', 'user logged out');
+    dispatch(logout());
+  } catch (error) {
+    log('error', 'error', error);
+  }
+};
 
 export const logout = (): ActionReducer => ({
   type: actionTypes.logout,

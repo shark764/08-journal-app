@@ -1,20 +1,23 @@
 import Avatar from 'react-avatar';
 import { useDispatch, useSelector } from 'react-redux';
-import { useNavigate } from 'react-router-dom';
 import { startLogout } from '@/actions/auth';
-import type { AppState } from '@/types';
-import type { AuthThunkDispatch } from '@/types/auth';
+import { startNewNote } from '@/actions/notes';
+import type { AppState, AppThunkDispatch } from '@/types';
 import JournalEntries from './JournalEntries';
 
 const Sidebar = () => {
-  const navigate = useNavigate();
-  const dispatch: AuthThunkDispatch = useDispatch();
+  const dispatch: AppThunkDispatch = useDispatch();
   const displayName = useSelector((state: AppState) => state.auth.name);
   const photoURL = useSelector((state: AppState) => state.auth.photoURL);
 
   const handleLogout = () => {
     dispatch(startLogout());
-    navigate('/auth', { replace: true });
+    // Not necessary since the subscriber takes care of redirect
+    // navigate('/auth', { replace: true });
+  };
+
+  const handleAddNew = () => {
+    dispatch(startNewNote());
   };
 
   return (
@@ -38,7 +41,12 @@ const Sidebar = () => {
         </button>
       </div>
 
-      <div className="journal__new-entry pointer">
+      <div
+        role="button"
+        className="journal__new-entry pointer"
+        onClick={handleAddNew}
+        onKeyDown={undefined}
+        tabIndex={-1}>
         <i className="far fa-calendar-plus fa-5x" />
         <p className="mt-5">New entry</p>
       </div>

@@ -5,14 +5,14 @@ import validator from 'validator';
 import { startRegisterWithEmailAndPassword } from '@/actions/auth';
 import { uiRemoveError, uiSetError } from '@/actions/ui';
 import useForm from '@/hooks/useForm';
-import type { AppState } from '@/types';
-import type { AuthThunkDispatch, RegisterFormValues } from '@/types/auth';
+import type { AppState, AppThunkDispatch } from '@/types';
+import type { RegisterFormValues } from '@/types/auth';
 import Loading from '../common/Loading';
 
 const RegisterScreen = () => {
   const errorMessage = useSelector((state: AppState) => state.ui.errorMessage);
   const isLoading = useSelector((state: AppState) => state.ui.loading);
-  const dispatch: AuthThunkDispatch = useDispatch();
+  const dispatch: AppThunkDispatch = useDispatch();
   const [formValues, handleInputChange] = useForm<RegisterFormValues>({
     name: '',
     email: '',

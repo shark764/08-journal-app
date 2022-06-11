@@ -7,4 +7,12 @@ export const actionTypes = {
   uiStopLoading: '[UI] Stop Loading',
   uiSetError: '[UI] Set Error',
   uiRemoveError: '[UI] Remove Error',
+
+  notesLoad: '[Notes] Load Notes',
+  notesAddNew: '[Notes] Add Note',
+  notesUpdated: '[Notes] Update Note',
+  notesFileUrl: '[Notes] Update Image',
+  notesSetActive: '[Notes] Set Active Note',
+  notesDeleted: '[Notes] Delete Note',
+  notesCleanup: '[Notes] Cleanup Note',
 };

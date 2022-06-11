@@ -1,16 +1,28 @@
-const NotesAppBar = () => (
-  <div className="notes__app-bar">
-    <span>August 28 2022</span>
+import { DateTime } from 'luxon';
 
-    <div>
-      <button type="button" className="btn">
-        Picture
-      </button>
-      <button type="button" className="btn">
-        Save
-      </button>
+interface Props {
+  date: number;
+  handleSave: () => void;
+  handlePicture: () => void;
+}
+
+const NotesAppBar = ({ date, handleSave, handlePicture }: Props) => {
+  const noteDate = DateTime.fromMillis(date);
+
+  return (
+    <div className="notes__app-bar">
+      <span>{noteDate.toLocaleString(DateTime.DATE_FULL)}</span>
+
+      <div>
+        <button type="button" className="btn" onClick={handlePicture}>
+          Picture
+        </button>
+        <button type="button" className="btn" onClick={handleSave}>
+          Save
+        </button>
+      </div>
     </div>
-  </div>
-);
+  );
+};
 
 export default NotesAppBar;

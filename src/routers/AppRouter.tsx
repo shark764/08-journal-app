@@ -4,15 +4,14 @@ import { useDispatch } from 'react-redux';
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import { login } from '@/actions/auth';
 import LoadingScreen from '@/components/common/LoadingScreen';
-import { log } from '@/shared/utils';
-import type { AuthThunkDispatch } from '@/types/auth';
+import type { AppThunkDispatch } from '@/types';
 import AuthRouter from './AuthRouter';
 import JournalRouter from './JournalRouter';
 import PrivateRoute from './PrivateRoute';
 import PublicRoute from './PublicRoute';
 
 const AppRouter = () => {
-  const dispatch: AuthThunkDispatch = useDispatch();
+  const dispatch: AppThunkDispatch = useDispatch();
   const [checking, setChecking] = useState(true);
   const [isAuthenticated, setIsAuthenticated] = useState(false);
 
@@ -24,13 +23,11 @@ const AppRouter = () => {
         // https://firebase.google.com/docs/reference/js/firebase.User
         const { uid, displayName, photoURL } = user;
         dispatch(login(uid, displayName, photoURL));
+        // dispatch(startLoadNotes());
         setIsAuthenticated(true);
-        log('info', 'user is signed in', { uid, displayName, photoURL });
-        // ...
       } else {
         // User is signed out
         setIsAuthenticated(false);
-        log('info', 'user is signed out');
       }
       setChecking(false);
     });

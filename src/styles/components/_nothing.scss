@@ -10,4 +10,19 @@
   p {
     text-align: center;
   }
+
+  button {
+    font-size: inherit;
+    font-weight: 500;
+    background: none;
+    border: none;
+    cursor: pointer;
+    color: $primary-color-dark;
+
+    &:hover,
+    &:active,
+    &:focus {
+      color: darken($color: $primary-color-dark, $amount: 15);
+    }
+  }
 }

@@ -67,11 +67,14 @@
 }
 
 .journal__entry-picture {
+  flex: 1;
+  background-size: cover;
   height: 75px;
   width: 75px;
 }
 
 .journal__entry-body {
+  flex: 2;
   padding: 10px;
 }
 .journal__entry-title {
@@ -80,6 +83,10 @@
 }
 .journal__entry-content {
   font-size: 10px;
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 2;
+  overflow: hidden;
 }
 
 .journal__entry-date-box {
@@ -87,6 +94,7 @@
   flex-direction: column;
   align-items: center;
   justify-content: center;
+  flex: 1;
   padding: 5px;
 }
 .journal__entry-date-box span {

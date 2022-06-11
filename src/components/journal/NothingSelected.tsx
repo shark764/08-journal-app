@@ -1,13 +1,28 @@
-const NothingSelected = () => (
-  <div className="nothing__main-content">
-    <p>
-      Select something
-      <br />
-      pr create an entry
-    </p>
+import { useDispatch } from 'react-redux';
+import { startNewNote } from '@/actions/notes';
+import type { AppThunkDispatch } from '@/types';
 
-    <i className="far fa-star fa-4x mt-5" />
-  </div>
-);
+const NothingSelected = () => {
+  const dispatch: AppThunkDispatch = useDispatch();
+
+  const handleAddNew = () => {
+    dispatch(startNewNote());
+  };
+
+  return (
+    <div className="nothing__main-content">
+      <p>
+        Select something
+        <br />
+        or
+        <button type="button" onClick={handleAddNew}>
+          create an entry
+        </button>
+      </p>
+
+      <i className="far fa-star fa-4x mt-5" />
+    </div>
+  );
+};
 
 export default NothingSelected;
