@@ -40,7 +40,10 @@ const LoginScreen = () => {
 
       {isLoading && <Loading />}
 
-      <form onSubmit={handleSubmit} autoComplete="off">
+      <form
+        onSubmit={handleSubmit}
+        autoComplete="off"
+        className="animate__animated animate__fadeIn animate__faster">
         <input
           type="text"
           name="email"

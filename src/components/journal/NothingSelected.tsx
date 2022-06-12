@@ -10,7 +10,7 @@ const NothingSelected = () => {
   };
 
   return (
-    <div className="nothing__main-content">
+    <div className="nothing__main-content animate__animated animate__fadeInRight animate__faster">
       <p>
         Select something
         <br />

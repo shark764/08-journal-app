@@ -54,7 +54,7 @@ const NoteScreen = () => {
   };
 
   return (
-    <div className="notes__main-content">
+    <div className="notes__main-content animate__animated animate__fadeInLeft animate__faster">
       <NotesAppBar
         date={activeNote?.date as number}
         handleSave={handleSave}

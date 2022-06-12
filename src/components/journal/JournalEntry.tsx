@@ -19,7 +19,7 @@ const JournalEntry = ({ entry, onClick, isActive = false }: Props) => {
       role="presentation"
       className={`journal__entry pointer ${
         isActive ? 'journal__entry-active' : ''
-      }`}
+      } animate__animated animate__fadeIn animate__slower`}
       onClick={handleClick}>
       {entry.imageUrl !== undefined && (
         <div
