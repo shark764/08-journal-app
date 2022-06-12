@@ -6,6 +6,7 @@ import JournalEntry from './JournalEntry';
 
 const JournalEntries = () => {
   const entries = useSelector((state: AppState) => state.notes.notes);
+  const activeNote = useSelector((state: AppState) => state.notes.active);
   const dispatch = useDispatch();
 
   const handleClick = (entry: Partial<Note>) => {
@@ -15,7 +16,12 @@ const JournalEntries = () => {
   return (
     <div className="journal__entries">
       {entries.map((entry) => (
-        <JournalEntry key={entry.id} entry={entry} onClick={handleClick} />
+        <JournalEntry
+          key={entry.id}
+          entry={entry}
+          onClick={handleClick}
+          isActive={activeNote !== null && entry.id === activeNote?.id}
+        />
       ))}
     </div>
   );

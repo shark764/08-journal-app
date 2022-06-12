@@ -23,6 +23,7 @@
 .btn-primary {
   background-color: $primary-color;
   border-radius: 4px;
+  transition: background-color 0.3s ease;
 
   &:hover {
     background-color: darken($color: $primary-color, $amount: 15);
@@ -30,6 +31,25 @@
 
   &:disabled {
     background-color: lighten($color: $primary-color, $amount: 20);
+    cursor: not-allowed;
+  }
+}
+
+// TODO:
+// highlight selected on sidebar
+// bgcolor hover on sidebar
+
+.btn-danger {
+  background-color: $accent-color;
+  border-radius: 4px;
+  transition: background-color 0.3s ease;
+
+  &:hover {
+    background-color: darken($color: $accent-color, $amount: 15);
+  }
+
+  &:disabled {
+    background-color: lighten($color: $accent-color, $amount: 20);
     cursor: not-allowed;
   }
 }

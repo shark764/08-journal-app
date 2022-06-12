@@ -62,8 +62,21 @@
   color: $secondary-text-color;
   border-radius: 4px;
   display: flex;
+  justify-content: space-between;
   margin-bottom: 10px;
   overflow: hidden;
+  transition: background-color 0.3s ease, color 0.3s ease;
+
+  &:hover {
+    background-color: darken($color: $alt-body, $amount: 15);
+    color: darken($color: $secondary-text-color, $amount: 15);
+  }
+}
+
+.journal__entry-active {
+  background-color: $primary-color-light;
+  color: $primary-text-color;
+  box-shadow: 3px 3px $primary-color-dark;
 }
 
 .journal__entry-picture {

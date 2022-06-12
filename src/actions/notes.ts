@@ -124,6 +124,43 @@ export const startUpload =
       dispatch(setActiveNote(updatedActiveNote));
     };
 
+export const startDeleteNote =
+  (id: string): AppThunkAction =>
+    async (dispatch, getState) => {
+      const { uid } = getState().auth;
+      const activeNote = getState().notes.active;
+
+      const result = await Swal.fire({
+        title: 'Are you sure?',
+        text: 'You won\'t be able to revert this!',
+        icon: 'warning',
+        showCancelButton: true,
+        confirmButtonColor: '#3085d6',
+        cancelButtonColor: '#d33',
+        confirmButtonText: 'Yes, delete it!',
+      });
+      if (result.isConfirmed) {
+        await deleteDoc(doc(db, `${uid as string}/journal/notes`, id));
+        if (activeNote?.id === id) {
+          dispatch(clearActiveNote());
+        }
+        void Swal.fire('Deleted!', 'The document has been deleted.', 'success');
+      // onSnapshot will take care of this
+      // dispatch(deleteNote(id));
+      }
+    };
+
+export const deleteNote = (id: string): ActionReducer => ({
+  type: actionTypes.notesDeleted,
+  payload: {
+    id,
+  },
+});
+
+export const cleanup = (): ActionReducer => ({
+  type: actionTypes.notesCleanup,
+});
+
 // export const startNewNote2 =
 //   (note: Partial<Note>): AppThunkAction =>
 //   async (dispatch, getState) => {

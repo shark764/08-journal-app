@@ -4,9 +4,10 @@ import type { Note } from '@/types/notes';
 interface Props {
   entry: Partial<Note>;
   onClick: (entry: Partial<Note>) => void;
+  isActive?: boolean;
 }
 
-const JournalEntry = ({ entry, onClick }: Props) => {
+const JournalEntry = ({ entry, onClick, isActive = false }: Props) => {
   const noteDate = DateTime.fromMillis(entry.date as number);
 
   const handleClick = () => {
@@ -16,13 +17,14 @@ const JournalEntry = ({ entry, onClick }: Props) => {
   return (
     <div
       role="presentation"
-      className="journal__entry pointer"
+      className={`journal__entry pointer ${
+        isActive ? 'journal__entry-active' : ''
+      }`}
       onClick={handleClick}>
       {entry.imageUrl !== undefined && (
         <div
           className="journal__entry-picture"
           style={{
-            backgroundSize: 'cover',
             backgroundImage: `url("${entry.imageUrl}")`,
           }}
         />

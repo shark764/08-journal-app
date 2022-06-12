@@ -12,6 +12,7 @@ import { googleAuthProvider } from '@/firebase/config';
 import { actionTypes } from '@/shared/actionTypes';
 import { log } from '@/shared/utils';
 import type { ActionReducer, AppThunkAction } from '@/types';
+import { cleanup } from './notes';
 import { uiSetError, uiStartLoading, uiStopLoading } from './ui';
 
 export const startLoginWithEmailAndPassword =
@@ -112,8 +113,8 @@ export const startLogout = (): AppThunkAction => async (dispatch) => {
     const auth = getAuth();
     await signOut(auth);
     // Sign-out successful.
-    log('info', 'user logged out');
     dispatch(logout());
+    dispatch(cleanup());
   } catch (error) {
     log('error', 'error', error);
   }

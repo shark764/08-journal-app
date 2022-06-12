@@ -1,5 +1,11 @@
 import { useEffect } from 'react';
-import { collection, onSnapshot, query, where } from 'firebase/firestore';
+import {
+  collection,
+  onSnapshot,
+  orderBy,
+  query,
+  // where,
+} from 'firebase/firestore';
 import { useDispatch, useSelector } from 'react-redux';
 import { Navigate, Route, Routes } from 'react-router-dom';
 import { setNotes } from '@/actions/notes';
@@ -15,7 +21,8 @@ const JournalRouter = () => {
   useEffect(() => {
     const q = query(
       collection(db, `${userUid as string}/journal/notes`),
-      where('title', '!=', '')
+      // where('title', '!=', ''),
+      orderBy('date', 'desc')
     );
     const unsubscribe = onSnapshot(q, (notesSnapshot) => {
       const notes: Array<Partial<Note>> = [];
@@ -23,7 +30,12 @@ const JournalRouter = () => {
       // TODO:
       // Update only document that changed
       notesSnapshot.docChanges().forEach(({ doc }) => {
-        console.log('DocumentChanged', { id: doc.id, ...doc.data() });
+        console.log('DocumentChanged', {
+          id: doc.id,
+          ...doc.data(),
+          doc,
+          exists: doc.exists(),
+        });
       });
 
       notesSnapshot.forEach((doc) => {

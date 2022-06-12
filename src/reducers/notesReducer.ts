@@ -67,7 +67,6 @@ const notesReducer = (
 
     case actionTypes.notesUpdated: {
       const { note } = action.payload as { note: Partial<Note>; };
-      console.log(note, state.notes);
       return {
         ...state,
         notes: state.notes.map((item) =>
@@ -75,6 +74,19 @@ const notesReducer = (
         ),
       };
     }
+
+    case actionTypes.notesDeleted: {
+      const { id } = action.payload as { id: string; };
+      return {
+        ...state,
+        notes: state.notes.filter((item) => item.id !== id),
+      };
+    }
+
+    case actionTypes.notesCleanup:
+      return {
+        ...initialState,
+      };
 
     default:
       return state;
